@@ -16,12 +16,12 @@ class DataTable extends Migration
         Schema::create('data_software_tables', function (Blueprint $table) {
             $table->id();
             $table->string('nama_id', 100)->nullable()->default('none'); 
-            $table->string('Nama', 100)->nullable()->default('none');
+            $table->string('nama', 100)->nullable()->default('none');
             $table->string('icon', 100)->nullable()->default('none');           
-            $table->string('Kategori', 100)->nullable()->default('none');
+            $table->string('kategori', 100)->nullable()->default('none');
             $table->string('size', 100)->nullable()->default('1.0');
-            $table->string('Versi', 100)->nullable()->default('none');           
-            $table->string('Deskripsi', 100)->nullable()->default('none');           
+            $table->string('versi', 100)->nullable()->default('none');           
+            $table->string('deskripsi', 100)->nullable()->default('none');           
             $table->string('tentang', 100)->nullable()->default('none');
             $table->string('requirement', 100)->nullable()->default('Work On All Pc '); 
             $table->string('link', 100)->nullable()->default('none'); 
