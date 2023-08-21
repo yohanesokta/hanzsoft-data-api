@@ -13,7 +13,7 @@ class DataTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_software_table', function (Blueprint $table) {
+        Schema::create('data_software_tables', function (Blueprint $table) {
             $table->id();
             $table->string('nama_id', 100)->nullable()->default('none'); 
             $table->string('Nama', 100)->nullable()->default('none');
@@ -35,6 +35,6 @@ class DataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_software_table');
+        Schema::dropIfExists('data_software_tables');
     }
 }
