@@ -13,7 +13,7 @@ class CreateKategori extends Migration
      */
     public function up()
     {
-        Schema::create('data_kategori', function (Blueprint $table) {
+        Schema::create('data_kategoris', function (Blueprint $table) {
             $table->id();
             $table->string('Kategori', 100)->nullable();
             $table->string('image', 100)->nullable();
@@ -27,6 +27,6 @@ class CreateKategori extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_kategori');
+        Schema::dropIfExists('data_kategoris');
     }
 }
