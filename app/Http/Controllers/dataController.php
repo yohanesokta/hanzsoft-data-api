@@ -15,6 +15,7 @@ use App\Http\Resources\dataCollection;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Validation\ValidationException;
 use Mockery\Generator\StringManipulation\Pass\Pass;
 
@@ -34,6 +35,15 @@ function passkey($data,$request){
 
 class dataController extends Controller
 {
+    public function homepage(Request $request){
+        $data = [
+            'Message' => 'Wellcome to hanzsoft - api',
+            'api_key_locaton' => 'github',
+            'github_location' => 'https://github.com/yohanesokta/hanzsoft-data-api/',
+            'request' => $request->all(),
+        ];
+        return response()->json(['data'=>$data],200);
+    }
 
     public function find(Request $request){
         if (array_key_exists('cari',$request->all())){
