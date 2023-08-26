@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+// global function routes
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
-module.exports = router;
+
+function global_routes(app) {
+
+
+    app.get('/',(req,res)=>{
+        res.json({"message":"hello"})
+    })
+
+}
+
+module.exports = {global_routes}
