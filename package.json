@@ -2,9 +2,9 @@
   "name": "hanzsoft-data-api",
   "version": "1.0.0",
   "description": "express api",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,8 +23,5 @@
     "express": "^4.18.2",
     "mongodb": "4.4",
     "mongose": "^0.0.2-security"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
   }
 }

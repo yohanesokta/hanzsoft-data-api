@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 const {db_connect} = require('./app/config/mongodb')
-const routes = require('./routes/')
+const routes = require('./routes/Routes')
 
 const app = express();
 const corsOption = {
