@@ -44,8 +44,25 @@ function add(req,res) {
 }
 
 function get(req,res){
-    if(req.params.data == 'find'){
+    if(req.query.data == 'find'){
+        client.connect((error, client)=>{
+            if (error){
+                err(res)
+            }
 
+            db = client.db(dbName)
+            data = db.collection(dbCollection)
+            .find({"nama" : new RegExp(req.query.find) })
+            .toArray((error, result) =>{
+                data = {
+                    "Message" : "Find Data ~ Result",
+                    "data" : result
+                }
+                res.json(data)
+            })
+
+        })
+        
     }else{
         client.connect((error, client)=>{
             if (error){
@@ -56,7 +73,12 @@ function get(req,res){
             data = db.collection(dbCollection)
             .find()
             .toArray((error, result) =>{
-                res.json({"data":result})
+
+                data = {
+                    "Message" : "Find ALL Data ~ Result",
+                    "data" : result
+                }
+                res.json(data)
             })
 
         })
