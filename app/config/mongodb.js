@@ -5,7 +5,7 @@ function db_connect(){
 
     const uri = process.env.DB_URL;
 
-    console.log(`connecting to MongoDB to ${uri}`)
+    console.log('connecting to MongoDB')
 
     const client = new MongoClient(uri, {
         serverApi: {

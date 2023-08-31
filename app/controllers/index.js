@@ -32,8 +32,20 @@ function add(req,res) {
         if (validator == undefined){
             res.json({"message": "validation is not completed"})
         }else{
-            res.json({"message":"validation completed"})
-            // const db = client.db(dbName)
+            const db = client.db(dbName)
+            data = {
+                    "nama": validator[0],
+                    "nama_query":req.query.nama.toLowerCase(),
+                    "kategori":validator[1],
+                    "description":validator[2],
+                    "info":validator[3],
+                    "icon":validator[4],
+                    "download":validator[5],
+                    "ver":validator[6]
+                    }
+            res.json({"message":"add succsessfull","data":data})
+
+            db.collection(dbCollection).insertOne(data)
         }
     }
 )}
@@ -44,7 +56,7 @@ function get(req,res){
             if (error){err(res)}
             db = client.db(dbName)
             data = db.collection(dbCollection)
-            .find({"nama" : new RegExp(req.query.find) })
+            .find({"nama_query" : new RegExp(req.query.find.toLowerCase()) })
             .toArray((error, result) =>{
                 data = {
                     "message" : "Find Data ~ Result",
@@ -53,7 +65,7 @@ function get(req,res){
                 res.json(data)
             })
         })
-    }else{
+}else{
         client.connect((error, client)=> {
             if (error){err(res)}
             db = client.db(dbName)
@@ -61,7 +73,7 @@ function get(req,res){
             .find()
             .toArray((error, result) => {
                 data = {
-                    "message" : "Find All Data ~ Result",
+                    "message" : "Query All Data ~ Result",
                     "data" : result
                 }
                 res.json(data)
