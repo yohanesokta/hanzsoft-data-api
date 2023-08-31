@@ -9,7 +9,7 @@ function global_routes(app) {
         res.json({"message":"hello"})
     })
 
-    app.get('/add',(req,res)=>{
+    app.post('/api',(req,res)=>{
         Control.add(req,res)
     })
 

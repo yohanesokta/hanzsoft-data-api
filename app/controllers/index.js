@@ -1,4 +1,6 @@
 const { MongoClient } = require('mongodb');
+const insertValidator = require('../models/insertValidator')
+
 const client = new MongoClient(process.env.DB_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -21,65 +23,49 @@ function control(){
 }
 
 function add(req,res) {
-  
     client.connect((error, client) => {
         if(error){
             err(res)
         }
-
-        const db = client.db(dbName)
-
-        db.collection(dbCollection).insertOne(
-            {
-                "nama":"Ilustrator",
-                "kategori":"Desain"
-            }
-        )
-
-        res.json({"message":"add complete"})
         
-    })
-    
-
-}
+        var validator = insertValidator.main(req)
+        if (validator == undefined){
+            res.json({"message": "validation is not completed"})
+        }else{
+            res.json({"message":"validation completed"})
+            // const db = client.db(dbName)
+        }
+    }
+)}
 
 function get(req,res){
-    if(req.query.data == 'find'){
+    if(req.query.action == 'find'){
         client.connect((error, client)=>{
-            if (error){
-                err(res)
-            }
-
+            if (error){err(res)}
             db = client.db(dbName)
             data = db.collection(dbCollection)
             .find({"nama" : new RegExp(req.query.find) })
             .toArray((error, result) =>{
                 data = {
-                    "Message" : "Find Data ~ Result",
+                    "message" : "Find Data ~ Result",
                     "data" : result
                 }
                 res.json(data)
             })
         })
-        
     }else{
-        client.connect((error, client)=>{
-            if (error){
-                err(res)
-            }
-
+        client.connect((error, client)=> {
+            if (error){err(res)}
             db = client.db(dbName)
             data = db.collection(dbCollection)
             .find()
-            .toArray((error, result) =>{
-
+            .toArray((error, result) => {
                 data = {
-                    "Message" : "Find ALL Data ~ Result",
+                    "message" : "Find All Data ~ Result",
                     "data" : result
                 }
                 res.json(data)
             })
-
         })
     }
 }
