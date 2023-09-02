@@ -8,7 +8,7 @@ function globalRoutes(app) {
 
 
     app.get('/',(req,res)=>{
-        res.json({"message":"hello"})
+        res.json({"message":"'/' request not found , please use /api on url"})
     })
 
     app.post('/api',(req,res)=>{
