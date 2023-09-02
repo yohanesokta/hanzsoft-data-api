@@ -13,9 +13,6 @@ function main(req){
 
     // Set nama query ke huruf kecil semua
 
-    if (req.query.nama !== undefined){
-        let nama_query = req.query.nama.toLowerCase()
-    }
 
     // Validasi semua schema agar tidak ada yang kosong ( require )
 

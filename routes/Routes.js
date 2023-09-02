@@ -1,8 +1,10 @@
 // global function routes
-const Control = require('../app/controllers')
+const mainControl = require('../app/controllers/mainControllers')
+const midControl = require('../app/controllers/middleControllers')
+const { display } = require('../app/config/display')
 
 
-function global_routes(app) {
+function globalRoutes(app) {
 
 
     app.get('/',(req,res)=>{
@@ -10,13 +12,20 @@ function global_routes(app) {
     })
 
     app.post('/api',(req,res)=>{
-        Control.add(req,res)
+        display(" '/api' on Post ")
+        mainControl.add(req,res)
     })
 
     app.get("/api",(req,res)=>{
-        Control.get(req,res)
+        display(" '/api' on GET ")
+        mainControl.get(req,res)
+    })
+
+    app.get("/api/kategori",(req,res)=>{
+        display(" '/api/kategori' on GET")
+        midControl.get(req,res)
     })
 
 }
 
-module.exports = {global_routes}
+module.exports = {globalRoutes}

@@ -13,7 +13,7 @@ app.use(express.json());
 
 db_connect()
 
-routes.global_routes(app)
+routes.globalRoutes(app)
 
 const port = process.env.PORT || 3000
 

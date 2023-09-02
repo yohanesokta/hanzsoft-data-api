@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const insertValidator = require('../models/insertValidator')
+const { err } = require('../config/display')
 
 const client = new MongoClient(process.env.DB_URL,{
     useNewUrlParser: true,
@@ -9,18 +10,15 @@ const client = new MongoClient(process.env.DB_URL,{
 const dbName = process.env.DB_NAME
 const dbCollection = process.env.DB_COLLECTION
 
-function err(res,msg = "default"){
-    if (msg == "default"){
-        res.json({"message":"server connection error"})
-    }else{
-        res.json({"message":msg})
-    }
-}
+
 
 
 function control(){
     console.log('hello')
 }
+
+// ( API POST FUNCTION )
+
 
 function add(req,res) {
     client.connect((error, client) => {
@@ -50,8 +48,13 @@ function add(req,res) {
     }
 )}
 
+// (/api GET FUNTION)
+
 function get(req,res){
     if(req.query.action == 'find'){
+
+        // if add parameter action : find (! require parameter find : < string >)
+
         client.connect((error, client)=>{
             if (error){err(res)}
             db = client.db(dbName)
@@ -66,6 +69,8 @@ function get(req,res){
             })
         })
 }else{
+
+    // without parameter action
         client.connect((error, client)=> {
             if (error){err(res)}
             db = client.db(dbName)
