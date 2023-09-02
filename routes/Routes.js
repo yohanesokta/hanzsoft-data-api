@@ -25,6 +25,10 @@ function globalRoutes(app) {
         display(" '/api/kategori' on GET")
         midControl.get(req,res)
     })
+    app.post("/api/kategori",(req,res)=>{
+        display(" '/api/kategori' on Post")
+        midControl.add(req,res)
+    })
 
 }
 

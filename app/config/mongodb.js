@@ -2,11 +2,6 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const { err } = require('./display');
 require('dotenv').config()
 
-const client = new MongoClient(process.env.DB_URL,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-
 
 function db_connect(){
 
@@ -37,16 +32,5 @@ function db_connect(){
     run().catch(console.dir);
 }
 
-function middldbControl(res,fun){
-    const dbName = process.env.DB_NAME
-    const dbCollection = process.env.DB_COLLECTION
 
-    client.connect((error,client) => {
-        if (error){
-            err(res)
-        }
-        fun()
-    })
-}
-
-module.exports = {db_connect , middldbControl}
+module.exports = {db_connect}

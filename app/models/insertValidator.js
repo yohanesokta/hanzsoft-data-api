@@ -12,7 +12,7 @@ function main(req){
     let ver = req.query.ver
 
     // Set nama query ke huruf kecil semua
-
+    
 
     // Validasi semua schema agar tidak ada yang kosong ( require )
 
