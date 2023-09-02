@@ -1,22 +1,13 @@
-<style>
-    p{
-        font-size:15px;
-    }
-    red{
-        color:green;
-    }
-</style>
-
 <p>api ini difungsikan untuk penggunaan website saya <a href="">hanzsoft-websites</a></p>
 
-# PUBLIC API ( hanzsoft - websites)
+# :globe_with_meridians:  PUBLIC API ( hanzsoft - websites)
 penggunaan api ini "Sebenarnya" digunakan untuk website saya pribadi , yaitu <a href="">hanzsoft-websites</a>. Namun kalian juga bisa pakai untuk metode belajar atau ingin clone dan modifikasi sendiri untuk sebagai referensi.
 
 dibikin menggunakan [Node JS] [Express JS]
 
 ### | Penggunaan
 
-##### listen on
+##### :zap: listen on
 
     https://hanzsoft-data-api.vercel.app/api
 
@@ -33,7 +24,7 @@ get tanpa parameter akan menampilkan semua data software tanpa terkecuali
 
 contoh:
 
-### GET
+### :page_with_curl: GET
 
     https://hanzsoft-data-api.vercel.app/api
 
@@ -54,19 +45,27 @@ hasil
 }
 ```
 ---
+
+## :mag: GET FIND
 get dengan parameter action **find** akan mengaktifkan pencarian
 
 penggunaan
 
 | Parameter | Values | kebutuhan
 | --- | --- | --- |
-| `action` | **find** | wajib "require"
-|`find` | **nama software** | optional
+| `action` | find | **require** & wajib
+|`find` | nama software | optional
 
 ---
 **Contoh** :
     
     https://hanzsoft-data-api.vercel.app/api?action=find&find=corel
+
+| Parameter | Values |
+| --- | --- |
+| `action`|find
+|`find`| corel
+
 
 hasil
 
@@ -89,8 +88,8 @@ hasil
 }
 ```
 
-## End
+## :anchor: End
 
 sebenarnya masih terdapat banyak fungsi namun masih di tahap pengembangan
 
-follow my github & stay creative :blush:
+Saya YohanesOktanio , follow my github & stay creative :blush:
