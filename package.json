@@ -2,13 +2,13 @@
   "name": "hanzsoft-data-api",
   "version": "1.0.0",
   "description": "express api",
-  "main": "app.js",
+  "main": "index.js",
   "engines": {
     "node": "18.x"
   },
   "scripts": {
-    "dev": "node app.js",
-    "start": "node app.js",
+    "dev": "node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
