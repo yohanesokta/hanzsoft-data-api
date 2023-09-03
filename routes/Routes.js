@@ -8,7 +8,14 @@ function globalRoutes(app) {
 
 
     app.get('/',(req,res)=>{
-        res.json({"message":"'/' request not found , please use /api on url"})
+        var data = {
+            "name":"hanzsoft-data-api",
+            "author":"YohanesOktanio",
+            "organisasi":"YhanzC Product",
+            "isi":"Beragam free software",
+            "hosting":"vercel",
+        }
+        res.json({"message":"'/' request not found , please use /api on url","data":data})
     })
 
     app.post('/api',(req,res)=>{

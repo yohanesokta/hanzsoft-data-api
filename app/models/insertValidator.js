@@ -10,18 +10,19 @@ function main(req){
     let icon = req.query.icon
     let download = req.query.download
     let ver = req.query.ver
-
-    // Set nama query ke huruf kecil semua
+    let preview = req.query.preview
+    let requires = req.query.req
+     // Set nama query ke huruf kecil semua
     
 
     // Validasi semua schema agar tidak ada yang kosong ( require )
 
-    if ([nama,kategori,description,info,icon,download,ver].includes(undefined) || [nama,kategori,description,info,icon,download,ver].includes(null) ){
+    if ([nama,kategori,description,info,icon,download,ver,preview,requires].includes(undefined) || [nama,kategori,description,info,icon,download,ver,preview,requires].includes(null) ){
         console.log('Penambahan Gagal')
         return undefined
     }else{
         console.log('Penambahan berhasil')
-        return [nama,kategori,description,info,icon,download,ver]
+        return [nama,kategori,description,info,icon,download,ver,preview,requires]
     }
 }
 

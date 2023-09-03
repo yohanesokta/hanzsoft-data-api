@@ -5,7 +5,7 @@ require('dotenv').config()
 
 function db_connect(){
 
-    const uri = process.env.DB_URL;
+    const uri = process.env.MONGODB_URI;
 
     console.log('connecting to MongoDB')
 

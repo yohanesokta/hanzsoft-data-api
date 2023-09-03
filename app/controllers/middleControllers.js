@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 const exec = require('../config/mongodb');
 const { err } = require('../config/display');
 
-const client = new MongoClient(process.env.DB_URL,{
+const client = new MongoClient(process.env.MONGODB_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })

@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 const insertValidator = require('../models/insertValidator')
 const { err } = require('../config/display')
 
-const client = new MongoClient(process.env.DB_URL,{
+const client = new MongoClient(process.env.MONGODB_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -10,12 +10,6 @@ const client = new MongoClient(process.env.DB_URL,{
 const dbName = process.env.DB_NAME
 const dbCollection = process.env.DB_COLLECTION
 
-
-
-
-function control(){
-    console.log('hello')
-}
 
 // ( API POST FUNCTION )
 
@@ -39,7 +33,9 @@ function add(req,res) {
                     "info":validator[3],
                     "icon":validator[4],
                     "download":validator[5],
-                    "ver":validator[6]
+                    "ver":validator[6],
+                    "prev":validator[7],
+                    "req":validator[8]
                     }
             res.json({"message":"add succsessfull","data":data})
 
@@ -87,4 +83,4 @@ function get(req,res){
     }
 }
 
-module.exports = {control,add,get}
+module.exports = {add,get}

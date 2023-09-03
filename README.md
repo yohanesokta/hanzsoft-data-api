@@ -88,6 +88,24 @@ hasil
 }
 ```
 
+## Private add software
+
+_Requires Validation_ kalau mau  menambahkan list software
+| request parameter| type |
+|--|--|
+|`nama`| *string*|
+|`kategori`| *string*|
+|`description`| *string*|
+|`info`|*string* & **short**|
+|`icon`|*image link*|
+|`download`|**download link**|
+|`ver`|*version number*|
+|`prev`| *image link*|
+|`req`| *system requirements*
+
+info replace with decription if not use
+
+
 ## :anchor: End
 
 sebenarnya masih terdapat banyak fungsi namun masih di tahap pengembangan
