@@ -1,7 +1,3 @@
-function display(mes){
-    console.log("request activate on ( " + mes + " )")
-}
-
 function err(res,msg = "default"){
     if (msg == "default"){
         res.json({"message":"server connection error"})
@@ -10,4 +6,4 @@ function err(res,msg = "default"){
     }
 }
 
-module.exports = { display , err }
+module.exports = { err }

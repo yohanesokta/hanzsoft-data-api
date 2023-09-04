@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 const insertValidator = require('../models/insertValidator')
-const { err } = require('../config/display')
+const { err } = require('../config/display');
+const { query } = require('express');
 
 const client = new MongoClient(process.env.MONGODB_URI,{
     useNewUrlParser: true,
@@ -47,9 +48,7 @@ function add(req,res) {
 // (/api GET FUNTION)
 
 function get(req,res){
-    if(req.query.action == 'find'){
-
-        // if add parameter action : find (! require parameter find : < string >)
+    if (![req.query.find].includes(undefined)){
 
         client.connect((error, client)=>{
             if (error){err(res)}
@@ -58,15 +57,15 @@ function get(req,res){
             .find({"nama_query" : new RegExp(req.query.find.toLowerCase()) })
             .toArray((error, result) =>{
                 data = {
-                    "message" : "Find Data ~ Result",
+                    "message" : "find data -> result",
                     "data" : result
                 }
                 res.json(data)
             })
         })
-}else{
+    }else{
+        if([req.query.put].includes(undefined)){
 
-    // without parameter action
         client.connect((error, client)=> {
             if (error){err(res)}
             db = client.db(dbName)
@@ -74,12 +73,23 @@ function get(req,res){
             .find()
             .toArray((error, result) => {
                 data = {
-                    "message" : "Query All Data ~ Result",
+                    "message" : "query all data -> result",
                     "data" : result
                 }
                 res.json(data)
             })
         })
+            }else{
+
+                console.log(req.query.put)
+                client.connect((error,client) =>{
+                    db = client.db(dbName)
+                    data = db.collection(dbCollection).find({"nama" : req.query.put})
+                    .toArray((error,result) =>{
+                        res.json({"data" : result})
+                    })
+                })
+            }
     }
 }
 

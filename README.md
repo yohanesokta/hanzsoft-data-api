@@ -47,23 +47,21 @@ hasil
 ---
 
 ## :mag: GET FIND
-get dengan parameter action **find** akan mengaktifkan pencarian
+get dengan parameter **find** akan mengaktifkan pencarian
 
 penggunaan
 
 | Parameter | Values | kebutuhan
 | --- | --- | --- |
-| `action` | find | **require** & wajib
 |`find` | nama software | optional
 
 ---
 **Contoh** :
     
-    https://hanzsoft-data-api.vercel.app/api?action=find&find=corel
+    https://hanzsoft-data-api.vercel.app/api?find=corel
 
 | Parameter | Values |
 | --- | --- |
-| `action`|find
 |`find`| corel
 
 
@@ -72,6 +70,33 @@ hasil
 ```json
 {
     "message": "Find Data ~ Result",
+    "data": [
+        {
+            "_id": "(object id)",
+            "nama": "Corel Draw x7",
+            "nama_query": "corel draw x7",
+            "kategori": "Desain",
+            "description": "software untuk editing vektor yang cukup populer",
+            "info": "editing vektor fasted",
+            "icon": "icon.png",
+            "download": "download",
+            "ver": "x7"
+        }
+    ]
+}
+```
+
+## parameter put (*bukan method)
+
+dengan menggunakan method **GET** dan menggunakan parameter `put` maka akan menampilkan data berdasarkan nama software secara spesifik
+
+**Contoh :**
+
+    https://hanzsoft-data-api.vercel.app/api?put=Corel+Draw
+
+**Hasil :**
+```json
+    {
     "data": [
         {
             "_id": "(object id)",
@@ -104,7 +129,6 @@ _Requires Validation_ kalau mau  menambahkan list software
 |`req`| *system requirements*
 
 info replace with decription if not use
-
 
 ## :anchor: End
 
