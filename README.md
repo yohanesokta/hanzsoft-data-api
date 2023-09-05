@@ -33,7 +33,7 @@ hasil
 ```json
 {
     "message": "Query All Data ~ Result",
-    "data": [
+    "sofware": [
         {
             "isi data"
         },
@@ -41,10 +41,18 @@ hasil
             "isi data 2"
         },
             "isi data 3"
+    ],
+    "kategori":[
+        {
+            "kategori A"
+        },
+        {
+            "kategori B"
+        }
     ]
 }
 ```
----
+! update |  parameter find sekarang juga akan menampilkan kategori
 
 ## :mag: GET FIND
 get dengan parameter **find** akan mengaktifkan pencarian
@@ -100,8 +108,8 @@ dengan menggunakan method **GET** dan menggunakan parameter `put` maka akan mena
     "data": [
         {
             "_id": "(object id)",
-            "nama": "Corel Draw x7",
-            "nama_query": "corel draw x7",
+            "nama": "Corel Draw",
+            "nama_query": "corel draw",
             "kategori": "Desain",
             "description": "software untuk editing vektor yang cukup populer",
             "info": "editing vektor fasted",

@@ -11,15 +11,27 @@ const dbCollection = process.env.DB_COLLECTION_KATEGORI
 const db = client.db(dbName)
 
 function get(req,res){
-   client.connect((error,client) => {
-    if (error) { err(res) }
-    
-    var data = db.collection(dbCollection).find().toArray((error,result)=>{
 
-        res.json({"message" : "find all data category","data" : result})
+    if([req.query.find].includes(undefined)){
+
+        client.connect((error,client) => {
+        if (error) { err(res) }
+            var data = db.collection(dbCollection).find().toArray((error,result)=>{
+            res.json({"message" : "find all data category","data" : result})
     
+        })
     })
-   })
+    }else{
+        client.connect((err,client)=>{
+            if(err){err(res)}
+            var data = db.collection(process.env.DB_COLLECTION).find({"kategori":req.query.find}).toArray((err,result)=>{
+                res.json({
+                    'message':'find category : ' + req.query.find,
+                    'data':result
+                })
+            })
+        })
+    }
 }
 
 
@@ -45,4 +57,4 @@ function add(req,res) {
     }
 )}
 
-module.exports = { get , add}
+module.exports = { get , add }
