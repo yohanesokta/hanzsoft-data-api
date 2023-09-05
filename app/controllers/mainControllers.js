@@ -10,10 +10,29 @@ const client = new MongoClient(process.env.MONGODB_URI,{
 
 const dbName = process.env.DB_NAME
 const dbCollection = process.env.DB_COLLECTION
+const kategoriCollection = process.env.DB_COLLECTION_KATEGORI
 
+async function dobleFinder(cola,colb,res) {
+  try {
+    await client.connect();
+    console.log('Connected to MongoDB');
 
-// ( API POST FUNCTION )
-
+    const db = client.db(dbName); 
+    const collection1 = db.collection(cola);
+    const collection2 = db.collection(colb);
+    const result1 = await collection1.find().toArray();
+    const result2 = await collection2.find().toArray();
+    res.json({
+        'message':'query all data -> result',
+        'software' : result1,
+        'kategori': result2
+    })    
+  } catch (error) {
+    console.error('Error connecting to MongoDB or finding documents:', error);
+  } finally {
+    client.close();
+  }
+}
 
 function add(req,res) {
     client.connect((error, client) => {
@@ -45,7 +64,6 @@ function add(req,res) {
     }
 )}
 
-// (/api GET FUNTION)
 
 function get(req,res){
     if (![req.query.find].includes(undefined)){
@@ -69,15 +87,9 @@ function get(req,res){
         client.connect((error, client)=> {
             if (error){err(res)}
             db = client.db(dbName)
-            data = db.collection(dbCollection)
-            .find()
-            .toArray((error, result) => {
-                data = {
-                    "message" : "query all data -> result",
-                    "data" : result
-                }
-                res.json(data)
-            })
+            var software = null
+            dobleFinder(dbCollection,kategoriCollection,res)
+
         })
             }else{
 

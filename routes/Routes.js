@@ -29,8 +29,6 @@ function globalRoutes(app) {
         midControl.get(req,res)
     })
 
-
-
     app.post("/api/kategori",(req,res)=>{
         midControl.add(req,res)
     })
