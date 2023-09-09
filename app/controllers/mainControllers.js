@@ -46,7 +46,7 @@ function add(req,res) {
         }
 
         var validator = insertValidator.main(req)
-        if (validator = undefined){
+        if (validator === undefined){
             res.json({"message": "validation is not completed"})
         }else{
             const db = client.db(dbName)
