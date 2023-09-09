@@ -3,6 +3,7 @@ function main(req,res){
 
    var data = {
         "nama" : req.query.nama,
+        "nama_query":req.query.namatoLowerCase(),
         "kategori" : req.query.kategori,
         "description" : req.query.description,
         "info" : req.query.info || req.query.description,
