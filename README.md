@@ -123,6 +123,9 @@ dengan menggunakan method **GET** dan menggunakan parameter `put` maka akan mena
 
 ## Private add software
 
+Send Post On
+
+    https://hanzsoft-data-api.vercel.app/api
 _Requires Validation_ kalau mau  menambahkan list software
 | request parameter| type |
 |--|--|

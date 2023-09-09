@@ -8,11 +8,6 @@ const client = new MongoClient(process.env.MONGODB_URI,{
     useUnifiedTopology: true,
 })
 
-const addClient = new MongoClient(process.env.DB_URL,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-
 const dbName = process.env.DB_NAME
 const dbCollection = process.env.DB_COLLECTION
 const kategoriCollection = process.env.DB_COLLECTION_KATEGORI
@@ -40,32 +35,15 @@ async function dobleFinder(cola,colb,res) {
 }
 
 function add(req,res) {
-    addClient.connect((error, client) => {
+    client.connect((error, client) => {
         if(error){
             err(res)
         }
-
-        var validator = insertValidator.main(req)
-        if (validator === undefined){
-            res.json({"message": "validation is not completed"})
-        }else{
-            const db = client.db(dbName)
-            data = {
-                    "nama": validator[0],
-                    "nama_query":req.query.nama.toLowerCase(),
-                    "kategori":validator[1],
-                    "description":validator[2],
-                    "info":validator[3],
-                    "icon":validator[4],
-                    "download":validator[5],
-                    "ver":validator[6],
-                    "prev":validator[7],
-                    "req":validator[8]
-                    }
-            res.json({"message":"add succsessfull","data":data})
-
-            db.collection(dbCollection).insertOne(data)
-        }
+        db = client.db(dbName)
+        var GETor = insertValidator.main(req,res)
+            if (GETor.valid){
+                db.collection(dbCollection).insertOne(GETor.data)
+            }
     }
 )}
 
