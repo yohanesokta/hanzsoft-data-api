@@ -8,6 +8,11 @@ const client = new MongoClient(process.env.MONGODB_URI,{
     useUnifiedTopology: true,
 })
 
+const addClient = new MongoClient(process.env.DB_URL,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+
 const dbName = process.env.DB_NAME
 const dbCollection = process.env.DB_COLLECTION
 const kategoriCollection = process.env.DB_COLLECTION_KATEGORI
@@ -35,7 +40,7 @@ async function dobleFinder(cola,colb,res) {
 }
 
 function add(req,res) {
-    client.connect((error, client) => {
+    addClient.connect((error, client) => {
         if(error){
             err(res)
         }
