@@ -1,7 +1,6 @@
 
 function main(req){
 
-    valid = true
 
     let nama = req.query.nama
     let kategori = req.query.kategori
@@ -11,16 +10,16 @@ function main(req){
     let download = req.query.download
     let ver = req.query.ver
     let preview = req.query.prev
-    let req = req.query.req
+    let requires = req.query.req
      // Set nama query ke huruf kecil semua
     
 
     // Validasi semua schema agar tidak ada yang kosong ( require )
 
-    if ([nama,kategori,description,info,icon,download,ver,preview,req].includes(undefined)){
+    if ([nama,kategori,description,info,icon,download,ver,preview,requires].includes(undefined) ){
         return undefined
     }else{
-        return [nama,kategori,description,info,icon,download,ver,preview,req]
+        return [nama,kategori,description,info,icon,download,ver,preview,requires]
     }
 }
 
