@@ -7,14 +7,19 @@ function globalRoutes(app) {
 
 
     app.get('/',(req,res)=>{
-        var data = {
-            "name":"hanzsoft-data-api",
-            "author":"YohanesOktanio",
-            "organisasi":"YhanzC Product",
-            "isi":"Beragam free software",
-            "hosting":"vercel",
+        var data ={
+            'status':{
+                'code':200,
+                'type':'success'
+            },
+            'response':{
+                'message':'wellcome to hanzsoft - data - api , documentasi ada di github',
+                'link' : 'https://github.com/yohanesokta/hanzsoft-data-api',
+                'dev' : 'yohanes oktanio',
+                'data':null
+            }
         }
-        res.json({"message":"'/' request not found , please use /api on url","data":data})
+        res.json(data)
     })
 
     app.post('/api',(req,res)=>{
