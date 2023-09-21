@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 const insertValidator = require('../models/insertValidator')
 const { err } = require('../config/display');
-const { query } = require('express');
+const { query, urlencoded } = require('express');
 
 //  create client
 
@@ -55,47 +55,71 @@ async function dobleFinder(cola,colb,res) {
   }
 }
 
-
-
 function get(req,res){
-    if (![req.query.find].includes(undefined)){
+    db = client.db(dbName)
+    dobleFinder(dbCollection,kategoriCollection,res)
+}
 
-        client.connect((error, client)=>{
-            if (error){err(res)}
+function find(req,res){
+    var finder = decodeURI(req.params.slug);
+
+    client.connect((error, client)=>{
+        if (error){err(res)}
             db = client.db(dbName)
             data = db.collection(dbCollection)
-            .find({"nama_query" : new RegExp(req.query.find.toLowerCase()) })
-            .toArray((error, result) =>{
-                data = {
-                    "message" : "find data -> result",
-                    "data" : result
-                }
-                res.json(data)
-            })
-        })
-    }else{
-        if([req.query.put].includes(undefined)){
-
-        client.connect((error, client)=> {
-            if (error){err(res)}
-            db = client.db(dbName)
-            var software = null
-            dobleFinder(dbCollection,kategoriCollection,res)
-
-        })
-            }else{
-
-                console.log(req.query.put)
-                client.connect((error,client) =>{
-                    db = client.db(dbName)
-                    data = db.collection(dbCollection).find({"nama" : req.query.put})
-                    .toArray((error,result) =>{
-                        res.json({"data" : result})
-                    })
+                    .find({"nama_query" : new RegExp(finder) })
+                    .toArray((error, result) =>{
+                        length = Object.keys(result).length;
+                        if (length == 0){
+                            res.status(404).json(sendResponse(null,length,'find data not found from database','not found',404))   
+                        }else{
+                            res.json(sendResponse(result,length,'finder data from database by params'))
+                        }})
                 })
-            }
-    }
 }
+
+function notFound(res){
+    res.status(400).json(sendResponse(null,0,'url route not found | tolong baca documentasi','bad request',400))
+}
+// function get(req,res){
+//     if (![req.query.find].includes(undefined)){
+
+//         client.connect((error, client)=>{
+//             if (error){err(res)}
+//             db = client.db(dbName)
+//             data = db.collection(dbCollection)
+//             .find({"nama_query" : new RegExp(req.query.find.toLowerCase()) })
+//             .toArray((error, result) =>{
+//                 data = {
+//                     "message" : "find data -> result",
+//                     "data" : result
+//                 }
+//                 res.json(data)
+//             })
+//         })
+//     }else{
+//         if([req.query.put].includes(undefined)){
+
+//         client.connect((error, client)=> {
+//             if (error){err(res)}
+//             db = client.db(dbName)
+//             var software = null
+//             dobleFinder(dbCollection,kategoriCollection,res)
+
+//         })
+//             }else{
+
+//                 console.log(req.query.put)
+//                 client.connect((error,client) =>{
+//                     db = client.db(dbName)
+//                     data = db.collection(dbCollection).find({"nama" : req.query.put})
+//                     .toArray((error,result) =>{
+//                         res.json({"data" : result})
+//                     })
+//                 })
+//             }
+//     }
+// }
 
 // fungsi add
 
@@ -112,4 +136,4 @@ function add(req,res) {
     }
 )}
 
-module.exports = {add,get}
+module.exports = {add,get,find,notFound}
