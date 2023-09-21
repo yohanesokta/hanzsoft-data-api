@@ -43,6 +43,9 @@ function globalRoutes(app) {
     app.get("/api/find/:slug",(req,res)=>{
         mainControl.find(req,res);
     })
+    app.get('/api/put/:slug',(req,res)=>{
+        mainControl.put(req,res);
+    })
 
     app.get('*',(req,res)=>{
         mainControl.notFound(res);

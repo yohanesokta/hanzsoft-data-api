@@ -1,5 +1,4 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const { err } = require('./display');
 require('dotenv').config()
 
 

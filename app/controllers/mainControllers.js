@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
-const insertValidator = require('../models/insertValidator')
-const { err } = require('../config/display');
+const insertValidator = require('../models/Validator')
 const { query, urlencoded } = require('express');
+const { sendResponse } = require('../config/Response.send')
 
 //  create client
 
@@ -17,22 +17,6 @@ const dbCollection = process.env.DB_COLLECTION
 const kategoriCollection = process.env.DB_COLLECTION_KATEGORI
 
 // finder doble on api
-
-function sendResponse(data,count = null,message = '',type = 'success',code = 200){
-    var make = {
-        'status':{
-            'code':code,
-            'type':type,
-
-        },
-        'response':{
-            'message': message,
-            'count': count,
-            'data': data
-        }
-    }
-    return make
-}
 
 async function dobleFinder(cola,colb,res) {
   try {
@@ -64,9 +48,9 @@ function find(req,res){
     var finder = decodeURI(req.params.slug);
 
     client.connect((error, client)=>{
-        if (error){err(res)}
-            db = client.db(dbName)
-            data = db.collection(dbCollection)
+        if (error){res.status(500).json(sendResponse(error,null,'server error','server error',500))}
+        db = client.db(dbName)
+        data = db.collection(dbCollection)
                     .find({"nama_query" : new RegExp(finder) })
                     .toArray((error, result) =>{
                         length = Object.keys(result).length;
@@ -78,56 +62,30 @@ function find(req,res){
                 })
 }
 
-function notFound(res){
-    res.status(400).json(sendResponse(null,0,'url route not found | tolong baca documentasi','bad request',400))
+
+function put(req,res){
+    client.connect((error,client)=>{
+        if (error){res.status(500).json(sendResponse(error,null,'server error','server error',500))}
+        var request = req.params.slug
+        var db = client.db(dbName);
+        var data = db.collection(dbCollection)
+            .find({"nama" : request})
+            .toArray((error,result)=>{
+                length = Object.keys(result).length;
+                if (length == 0){
+                    res.status(404).json(sendResponse(null,length,'find data not found from database','not found',404))
+                }else{
+                    res.json(sendResponse(result,length,'cari data dengan spesifik'))
+                }
+            })
+    })
 }
-// function get(req,res){
-//     if (![req.query.find].includes(undefined)){
 
-//         client.connect((error, client)=>{
-//             if (error){err(res)}
-//             db = client.db(dbName)
-//             data = db.collection(dbCollection)
-//             .find({"nama_query" : new RegExp(req.query.find.toLowerCase()) })
-//             .toArray((error, result) =>{
-//                 data = {
-//                     "message" : "find data -> result",
-//                     "data" : result
-//                 }
-//                 res.json(data)
-//             })
-//         })
-//     }else{
-//         if([req.query.put].includes(undefined)){
-
-//         client.connect((error, client)=> {
-//             if (error){err(res)}
-//             db = client.db(dbName)
-//             var software = null
-//             dobleFinder(dbCollection,kategoriCollection,res)
-
-//         })
-//             }else{
-
-//                 console.log(req.query.put)
-//                 client.connect((error,client) =>{
-//                     db = client.db(dbName)
-//                     data = db.collection(dbCollection).find({"nama" : req.query.put})
-//                     .toArray((error,result) =>{
-//                         res.json({"data" : result})
-//                     })
-//                 })
-//             }
-//     }
-// }
-
-// fungsi add
+//  fungsi default add
 
 function add(req,res) {
     client.connect((error, client) => {
-        if(error){
-            err(res)
-        }
+        if (error){res.status(500).json(sendResponse(error,null,'server error','server error',500))}
         db = client.db(dbName)
         var GETor = insertValidator.main(req,res)
             if (GETor.valid){
@@ -136,4 +94,11 @@ function add(req,res) {
     }
 )}
 
-module.exports = {add,get,find,notFound}
+// if our request not found on routes
+
+function notFound(res){
+    res.status(400).json(sendResponse(null,0,'url route not found | tolong baca documentasi','bad request',400))
+}
+
+
+module.exports = {add,get,find,notFound,put}
