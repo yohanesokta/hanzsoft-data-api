@@ -1,6 +1,5 @@
 const { MongoClient } = require('mongodb');
 const exec = require('../config/mongodb');
-const { err } = require('../config/display');
 
 const client = new MongoClient(process.env.MONGODB_URI,{
     useNewUrlParser: true,
@@ -15,7 +14,7 @@ function get(req,res){
     if([req.query.find].includes(undefined)){
 
         client.connect((error,client) => {
-        if (error) { err(res) }
+            if (error){res.status(500).json(sendResponse(error,null,'server error','server error',500))}
             var data = db.collection(dbCollection).find().toArray((error,result)=>{
             res.json({"message" : "find all data category","data" : result})
     
@@ -23,7 +22,7 @@ function get(req,res){
     })
     }else{
         client.connect((err,client)=>{
-            if(err){err(res)}
+            if (error){res.status(500).json(sendResponse(error,null,'server error','server error',500))}
             var data = db.collection(process.env.DB_COLLECTION).find({"kategori":req.query.find}).toArray((err,result)=>{
                 res.json({
                     'message':'find category : ' + req.query.find,
@@ -37,9 +36,7 @@ function get(req,res){
 
 function add(req,res) {
     client.connect((error, client) => {
-        if(error){
-            err(res)
-        }
+        if (error){res.status(500).json(sendResponse(error,null,'server error','server error',500))}
         var jenis = req.query.jenis
         var image = req.query.image
 
