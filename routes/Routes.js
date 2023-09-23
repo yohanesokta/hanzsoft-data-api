@@ -2,7 +2,6 @@
 const mainControl = require('../app/controllers/mainControllers')
 const midControl = require('../app/controllers/middleControllers')
 
-
 function globalRoutes(app) {
 
 

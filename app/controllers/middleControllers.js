@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const exec = require('../config/mongodb');
+const { sendResponse } = require('../config/Response.send')
 
 const client = new MongoClient(process.env.MONGODB_URI,{
     useNewUrlParser: true,
@@ -16,6 +17,7 @@ function get(req,res){
         client.connect((error,client) => {
             if (error){res.status(500).json(sendResponse(error,null,'server error','server error',500))}
             var data = db.collection(dbCollection).find().toArray((error,result)=>{
+                res.json(sendResponse(result,Object.keys(result).length,'mencari semua data kategori','success'))
             res.json({"message" : "find all data category","data" : result})
     
         })
@@ -28,6 +30,7 @@ function get(req,res){
                     'message':'find category : ' + req.query.find,
                     'data':result
                 })
+                res.json(sendResponse(result,Object.keys(result).length,'pencarian kategori untuk' + req.query.find))
             })
         })
     }

@@ -1,11 +1,35 @@
 <p>api ini difungsikan untuk penggunaan website saya <a href="https://github.com/yohanesokta/hanzsoft-websites">hanzsoft-websites</a></p>
 
 # :globe_with_meridians:  PUBLIC API ( hanzsoft - websites)
+
 penggunaan api ini "Sebenarnya" digunakan untuk website saya pribadi , yaitu <a href="https://github.com/yohanesokta/hanzsoft-websites">hanzsoft-websites</a>. Namun kalian juga bisa pakai untuk metode belajar atau ingin clone dan modifikasi sendiri untuk sebagai referensi.
 
-dibikin menggunakan [Node JS] [Express JS]
 
-### | Penggunaan
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
+## BUILD
+build sendiri dari data source github <br>
+
+install package telebih dahulu
+
+    $ npm install
+
+atau pakai yarn
+
+    $ yarn install
+<br>
+
+    mv .env.example .env
+
+edit *.env* | isi dengan URI Mongo DB kalian sendiri, bisa bikin di <a href="https://cloud.mongodb.com/">cloud mongodb</a>
+
+runing 
+
+    npm start || npm run dev
+
+selain run sendiri kalian juga bisa menggunakan api yang sudah di deploy
+
+### | Penggunaan 
 
 ##### :zap: listen on
 
@@ -22,8 +46,8 @@ method ini akan menampilkan hasil yang kalian berikan pada request
 
 method get pada '(url)/api' akan menampilkan semua data tanpa terkecuali 
 
-`data 0 ` : data software <br>
-`data 1 ` : data kategori
+`data pertama ` : data item <br>
+`data kedua `   : data kategori
 
 contoh:
 

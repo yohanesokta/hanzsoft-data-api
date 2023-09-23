@@ -55,7 +55,7 @@ function find(req,res){
                     .toArray((error, result) =>{
                         length = Object.keys(result).length;
                         if (length == 0){
-                            res.status(404).json(sendResponse(null,length,'find data not found from database','not found',404))   
+                            res.status(200).json(sendResponse(null,length,'berhasil mencari tetapi data tidak ada yang cocok','not found',404))   
                         }else{
                             res.json(sendResponse(result,length,'finder data from database by params'))
                         }})

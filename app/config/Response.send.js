@@ -7,7 +7,7 @@
     ditampilkan
 */
 
-function sendResponse(data,count = null,message = '',type = 'success',code = 200){
+function sendResponse(data = null,count = null,message = '',type = 'success',code = 200){
     var make = {
         'status':{
             'code':code,
