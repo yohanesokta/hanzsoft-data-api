@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/asset/components_add_style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body{
+    background: rgb(238,174,202);
+background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+.solid{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+.data{
+    margin:auto;
+    width: 500px;
+    height: 85%;
+    background-color: rgba(255, 255, 255,.5);
+    border-radius: 10px;
+    display: flex;
+    overflow-y: scroll;
+}
+form{
+    padding: 40px 0;
+    width: 80%;
+    margin: auto;
+}
+form input{
+    margin-left: -10px;
+    background-color: white;
+    opacity: 1;
+    font-size: 12pt;
+    padding: 10px 10px;
+    outline: none;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+}
+form p{
+    margin: 10px 0;
+    font-family: 'Poppins';
+}
+.btn{
+    display: flex;
+    width: 100%;
+}
+button{
+    margin: 30px auto;
+    padding:8px 20px;
+    background-color: rgb(10, 136, 47);
+    color : white;
+    border: none;
+    outline: none;
+    font-family: 'Poppins';
+    font-size: 11pt;
+
+}
+button:hover{
+    background-color: rgb(46, 173, 46);
+}
+</style>
+<body>
+   <div class="solid">
+        <div class="data">
+            <form action="/api/add/action" method="get">
+                <p>nama</p>
+                <input type="text" name="nama" id="nama" required>
+
+                <p>kategori</p>
+                <input type="text" name="kategori" id="kategori" required>
+                
+                <p>description</p>
+                <input type="text" name="description" id="description" required>
+
+                <p>info</p>
+                <input type="text" name="info" id="info" required>
+
+                <p>icon</p>
+                <input type="text" name="icon" id="icon" required>
+
+                <p>download</p>
+                <input type="text" name="download" id="download" required>
+
+                <p>version</p>
+                <input type="text" name="ver" id="ver" required>
+
+                <p>preview</p>
+                <input type="text" name="prev" id="prev" required>
+                
+                <p>required</p>
+                <input type="text" name="req" id="req" required>
+
+                <div class="btn">
+                    <button type="submit">Enter</button>
+                </div>
+                
+            </form>
+        </div>
+   </div>
+</body>
+</html>

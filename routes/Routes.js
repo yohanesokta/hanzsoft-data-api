@@ -22,8 +22,11 @@ function globalRoutes(app) {
     })
     
     // alredy
-    app.post('/api',(req,res)=>{
+    app.get('/api/add/action',(req,res)=>{
         mainControl.add(req,res);
+    })
+    app.get('/api/add',(req,res)=>{
+        mainControl.renAdd(req,res);
     })
 
     app.get("/api",(req,res)=>{

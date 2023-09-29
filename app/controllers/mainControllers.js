@@ -1,7 +1,8 @@
 const { MongoClient } = require('mongodb');
 const insertValidator = require('../models/Validator')
 const { query, urlencoded } = require('express');
-const { sendResponse } = require('../config/Response.send')
+const { sendResponse } = require('../config/Response.send');
+const { render, renderFile } = require('ejs');
 
 //  create client
 
@@ -94,6 +95,9 @@ function add(req,res) {
     }
 )}
 
+function renAdd(req,res){
+    res.render('components_add.html');
+}
 // if our request not found on routes
 
 function notFound(res){
@@ -101,4 +105,4 @@ function notFound(res){
 }
 
 
-module.exports = {add,get,find,notFound,put}
+module.exports = {add,get,find,notFound,put,renAdd}

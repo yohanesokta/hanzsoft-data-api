@@ -1,6 +1,5 @@
 
 function main(req,res){
-
    var data = {
         "nama" : req.query.nama,
         "nama_query":req.query.nama.toLowerCase(),

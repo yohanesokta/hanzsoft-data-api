@@ -197,9 +197,11 @@ harus spesifik karena finder dilakukan pada field nama
 
 ## Penambahan Software Secara Private
 
-penambahan tersedia pada endpoint api namun dalam method **POST**
+GUI Add software telah ditambahkan dalam versi ini di enpoint <a href="https://hanzsoft-data-api.vercel.app/api/add">Add Items GUI</a>
 
-    https://hanzsoft-data-api.vercel.app/api
+penambahan tersedia pada endpoint
+
+    https://hanzsoft-data-api.vercel.app/api/add/action
 _Requires Validation_ kalau mau  menambahkan list software
 | request parameter| type |
 |--|--|

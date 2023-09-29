@@ -7,6 +7,8 @@ const app = express();
 const corsOption = {
     origin:"*"
 };
+app.set('views', __dirname + '/view');
+app.engine('html', require('ejs').renderFile);
 
 app.use(cors(corsOption));
 app.use(express.json());
