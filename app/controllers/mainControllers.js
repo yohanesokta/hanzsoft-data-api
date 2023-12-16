@@ -42,7 +42,8 @@ async function setComment(req, res) {
         'nama': req.query.nama,
         'date': req.query.date,
         'time': req.query.time,
-        'field': req.query.field
+        'field': req.query.field,
+        'image': req.query.image
     }
     try {
         await client.connect();
