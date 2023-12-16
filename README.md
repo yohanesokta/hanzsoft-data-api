@@ -1,15 +1,15 @@
 <p>api ini difungsikan untuk penggunaan website saya <a href="https://github.com/yohanesokta/hanzsoft-websites">hanzsoft-websites</a></p>
 
-# :globe_with_meridians:  PUBLIC API ( hanzsoft - websites)
+# :globe_with_meridians: PUBLIC API ( hanzsoft - websites)
 
 penggunaan api ini "Sebenarnya" digunakan untuk website saya pribadi , yaitu <a href="https://github.com/yohanesokta/hanzsoft-websites">hanzsoft-websites</a>. Namun kalian juga bisa pakai untuk metode belajar atau ingin clone dan modifikasi sendiri untuk sebagai referensi.
 
-
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
- ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 ## BUILD
+
 build sendiri dari data source github <br>
 
 install package telebih dahulu
@@ -23,38 +23,42 @@ install package telebih dahulu
 atau bisa pakai yarn
 
     $ yarn install
+
 <br>
 
     mv .env.example .env
 
-edit *.env* | isi dengan URI Mongo DB kalian sendiri, bisa bikin di <a href="https://cloud.mongodb.com/">cloud mongodb</a>
+edit _.env_ | isi dengan URI Mongo DB kalian sendiri, bisa bikin di <a href="https://cloud.mongodb.com/">cloud mongodb</a>
 | ketentuannya memiliki database utama dan database untuk kategori
 
-runing 
+running
 
     npm start || npm run dev
 
 selain run sendiri kalian juga bisa menggunakan api yang sudah di deploy
 
-### | Penggunaan 
+### | Penggunaan
 
 ##### :zap: listen on
 
     https://hanzsoft-data-api.vercel.app/api
 
-gunakan "/api"!, jangan hanya menggunakan domainya ok  :ok_hand:
+gunakan "/api"!, jangan hanya menggunakan domainya ok :ok_hand:
+
 ## Perubahan v1.2
+
 semua berubah di versi 1.2 , perubahan pada response api dan perubahan routes menjadi lebih banyak dan mungkin akan mencakup banyak perubahan
 
 ## | Method
 
 ### GET METHOD
+
 method ini akan menampilkan hasil yang kalian berikan pada request
 
-method get pada '(url)/api' akan menampilkan semua data tanpa terkecuali 
+method get pada '(url)/api' akan menampilkan semua data tanpa terkecuali
 
 `data pertama ` : data item <br>
-`data kedua `   : data kategori
+`data kedua ` : data kategori
 
 contoh:
 
@@ -106,8 +110,8 @@ hasil
 }
 ```
 
-
 ## :mag: GET FIND
+
 get find akan menampilkan data sesuai query yang kalian berikan pada url setelah find !
 
 penggunaan
@@ -115,14 +119,12 @@ penggunaan
 hanzsoft-data-api.vercel.app/api/find/{ query untuk nama software }
 
 **Contoh** :
-    
+
     https://hanzsoft-data-api.vercel.app/api/find/{ nama software }
 
 contoh untuk find corel
-    
+
     https://hanzsoft-data-api.vercel.app/api/find/corel
-
-
 
 hasil
 
@@ -158,17 +160,16 @@ hasil
 
 hampir sama seperti (get find) namun sekarang berada di route (url)/api/put/{nama software spesifik}
 
-
 **Contoh :**
 
     https://hanzsoft-data-api.vercel.app/api/put/Corel Draw
 
-
 harus spesifik karena finder dilakukan pada field nama
 
 **Hasil :**
+
 ```json
-    {
+{
     "status": {
         "code": 200,
         "type": "success"
@@ -202,20 +203,43 @@ GUI Add software telah ditambahkan dalam versi ini di enpoint <a href="https://h
 penambahan tersedia pada endpoint
 
     https://hanzsoft-data-api.vercel.app/api/add/action
-_Requires Validation_ kalau mau  menambahkan list software
+
+_Requires Validation_ kalau mau menambahkan list software
 | request parameter| type |
 |--|--|
-|`nama`| *string*|
-|`kategori`| *string*|
-|`description`| *string*|
-|`info`|*string* & **short**|
-|`icon`|*image link*|
+|`nama`| _string_|
+|`kategori`| _string_|
+|`description`| _string_|
+|`info`|_string_ & **short**|
+|`icon`|_image link_|
 |`download`|**download link**|
-|`ver`|*version number*|
-|`prev`| *image link*|
-|`req`| *system requirements*
+|`ver`|_version number_|
+|`prev`| _image link_|
+|`req`| _system requirements_
 
 info akan direplace dengan description kalau tidak di isi
+
+## Project12 ( + ) Apa itu?
+
+Disini saya telah menambahkan property project12 untuk project [EastJavaCulture](https://github.com/yohanesokta/EastJava-Culture)
+
+Endpoint (Get & Post )
+
+    /project12/Comment
+
+hanya berfungsi sebagai penampung komentar untuk project [EastJavaCulture](https://github.com/yohanesokta/EastJava-Culture)
+
+#### USAGE
+
+| request parameter | type             |
+| ----------------- | ---------------- |
+| `quest`           | _quest key_      |
+| `nama`            | _string nama_    |
+| `date`            | _string tanggal_ |
+| `time`            | _string waktu_   |
+| `field`           | _isi comment_    |
+
+note : ini hanya dibutuhkan di post request untuk nambah data
 
 ## :anchor: Penutup
 
@@ -224,10 +248,3 @@ Saya **YohanesOktanio** mengharapkan kalian sebagai para developer ikut berkontr
 sebenarnya masih terdapat banyak fungsi namun masih di tahap pengembangan
 
 Saya YohanesOktanio , follow my github & stay creative :blush:
-
-
-
-
-
-
-
