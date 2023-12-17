@@ -47,7 +47,7 @@ async function setComment(req, res) {
             const db = client.db(dbName);
             const collection = db.collection('project12');
             await collection.updateOne(
-                { name: req.query.quest },
+                { name: req.body.quest },
                 { $push: { data: data } }
             );
 
@@ -59,8 +59,30 @@ async function setComment(req, res) {
 }
 
 
-function testMode(req, res) {
-    res.json(sendResponse(req.body))
+async function DeletetMode(req, res) {
+    if (req.query.token == "project12del") {
+        let config = {}
+        if (req.query.quest !== undefined) {
+            config = { name: req.query.quest }
+        }
+
+        try {
+            await client.connect();
+            const db = client.db(dbName);
+            await db.collection('project12').updateMany(
+                config,
+                { $set: { data: [] } }
+            );
+            res.json(sendResponse(null, 0, 'Berhasi Dihapus'));
+        } catch (error) {
+            res.json(error)
+        }
+        finally {
+            client.close()
+        }
+    } else {
+        res.json(sendResponse(req.query.token, 0, "token not valid", 'not valid', 500))
+    }
 }
 
 
@@ -155,4 +177,4 @@ function notFound(res) {
 }
 
 
-module.exports = { add, get, find, notFound, put, renAdd, getComment, setComment, testMode }
+module.exports = { add, get, find, notFound, put, renAdd, getComment, setComment, DeletetMode }
