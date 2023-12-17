@@ -37,27 +37,32 @@ async function getComment(res) {
 
 async function setComment(req, res) {
 
-    let data = {
-        'quest': req.query.quest,
-        'nama': req.query.nama,
-        'date': req.query.date,
-        'time': req.query.time,
-        'field': req.query.field
-    }
-    try {
-        await client.connect();
-        const db = client.db(dbName);
-        const collection = db.collection('project12');
-        await collection.updateOne(
-            { name: req.query.quest },
-            { $push: { data: data } }
-        );
+    if (req.body.token !== 'PRJ12') {
+        res.status(500).json(sendResponse(null, 0, "tokens is not valid", "Not Valid", 500))
+    } else {
+        data = req.body
+        delete data.token
+        try {
+            await client.connect();
+            const db = client.db(dbName);
+            const collection = db.collection('project12');
+            await collection.updateOne(
+                { name: req.query.quest },
+                { $push: { data: data } }
+            );
 
-        res.json(sendResponse(data))
-    } finally {
-        client.close()
+            res.json(sendResponse(data))
+        } finally {
+            client.close()
+        }
     }
 }
+
+
+function testMode(req, res) {
+    res.json(sendResponse(req.body))
+}
+
 
 // finder doble on api
 
@@ -150,4 +155,4 @@ function notFound(res) {
 }
 
 
-module.exports = { add, get, find, notFound, put, renAdd, getComment, setComment }
+module.exports = { add, get, find, notFound, put, renAdd, getComment, setComment, testMode }

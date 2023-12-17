@@ -58,6 +58,10 @@ function globalRoutes(app) {
         mainControl.setComment(req, res)
     })
 
+    app.post('/test', (req, res) => {
+        mainControl.testMode(req, res)
+    })
+
     app.get('*', (req, res) => {
         mainControl.notFound(res);
     })

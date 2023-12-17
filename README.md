@@ -231,13 +231,14 @@ hanya berfungsi sebagai penampung komentar untuk project [EastJavaCulture](https
 
 #### USAGE
 
-| request parameter | type             |
-| ----------------- | ---------------- |
-| `quest`           | _quest key_      |
-| `nama`            | _string nama_    |
-| `date`            | _string tanggal_ |
-| `time`            | _string waktu_   |
-| `field`           | _isi comment_    |
+| request body | type             |
+| ------------ | ---------------- |
+| `quest`      | _quest key_      |
+| `nama`       | _string nama_    |
+| `date`       | _string tanggal_ |
+| `time`       | _string waktu_   |
+| `field`      | _isi comment_    |
+| `image`      | _isi image_      |
 
 note : ini hanya dibutuhkan di post request untuk nambah data
 
